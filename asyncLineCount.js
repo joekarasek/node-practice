@@ -12,11 +12,11 @@ const filePath = process.argv[2];
 // This function reads a file asynchronously and uses a callback to return the number of new lines in the document
 function asycnNewLineCount(filePath, callback) {
   fs.readFile(filePath, function(err, fileBuffer) {
-    if (err) { return callback(err)};
-    newLineCount =  fileBuffer.toString()              // turns it into a string of ascii characters
-                              .split('\n')             // splits it into an array by line return
-                              .length - 1;             // and returns the length of the array (minus one to get the number of new lines in the document)
-    callback(newLineCount);
+    if (err) {
+      return callback(err)
+    };
+    newLineCount =  fileBuffer.toString().split('\n').length - 1;
+    return callback(newLineCount);
   });
 };
 
