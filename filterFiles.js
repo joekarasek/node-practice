@@ -18,7 +18,9 @@ const path = require('path');
 const dirPath = process.argv[2];
 const extensionFilter = "." + process.argv[3];
 
+
 // const results = [];
+
 
 function filterByExtension(dirPath, extensionFilter, callback) {
   fs.readdir(dirPath, function(err, list) {
