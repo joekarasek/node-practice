@@ -9,20 +9,19 @@
 const fs = require('fs');
 const filePath = process.argv[2];
 
-var newLineCount;
-
 // This function reads a file asynchronously and uses a callback to return the number of new lines in the document
 function asycnNewLineCount(filePath, callback) {
   fs.readFile(filePath, function(err, fileBuffer) {
+    if (err) { return callback(err)};
     newLineCount =  fileBuffer.toString()              // turns it into a string of ascii characters
                               .split('\n')             // splits it into an array by line return
                               .length - 1;             // and returns the length of the array (minus one to get the number of new lines in the document)
-    callback();
+    callback(newLineCount);
   });
 };
 
-function logLineCount() {
-  console.log(newLineCount);
+function logLineCount(result) {
+  console.log(result);
 }
 
 // Returns the new line count to the terminal
