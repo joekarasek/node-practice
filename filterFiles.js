@@ -19,9 +19,10 @@ const dirPath = process.argv[2];
 const extensionFilter = "." + process.argv[3];
 
 function filterByExtension(dirPath, extensionFilter, callback) {
-  fs.readdir(dirPath, function(err, list) {
+  fs.readdir(dirPath, (err, list) => {
 
     // This is my first solution before I discovered the path module
+    
     // files.forEach(function(file) {
     //   file.indexOf(extensionFilter) == -1 || results.push(file);
     // });
@@ -31,14 +32,14 @@ function filterByExtension(dirPath, extensionFilter, callback) {
     // });
 
     const results = list.filter((file) => path.extname(file) === extensionFilter);
-
+    
     callback(results);
 
   });
 };
 
 function logResults(items) {
-  items.forEach((item) => console.log(item));
+  items.forEach(item => console.log(item));
 }
 
 // Logs a list of files with the matching file extension
