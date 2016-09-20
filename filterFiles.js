@@ -18,10 +18,6 @@ const path = require('path');
 const dirPath = process.argv[2];
 const extensionFilter = "." + process.argv[3];
 
-
-// const results = [];
-
-
 function filterByExtension(dirPath, extensionFilter, callback) {
   fs.readdir(dirPath, function(err, list) {
 
@@ -30,19 +26,19 @@ function filterByExtension(dirPath, extensionFilter, callback) {
     //   file.indexOf(extensionFilter) == -1 || results.push(file);
     // });
 
-    list.forEach(function(file) {
-      path.extname(file) !== extensionFilter || results.push(file);
-    });
+    // list.forEach(function(file) {
+      // path.extname(file) !== extensionFilter || results.push(file);
+    // });
 
-    callback();
+    const results = list.filter((file) => path.extname(file) === extensionFilter);
+
+    callback(results);
 
   });
 };
 
-function logResults() {
-  results.forEach(function(result) {
-    console.log(result);
-  });
+function logResults(items) {
+  items.forEach((item) => console.log(item));
 }
 
 // Logs a list of files with the matching file extension
